@@ -18,3 +18,10 @@
       name: "{{ lxd_packages }}"
       state: latest
       update_cache: yes
+
+  - name: Install LXD
+    command: snap install lxd
+    args:
+      creates: /var/snap/lxd
+    tags:
+    - lxd
