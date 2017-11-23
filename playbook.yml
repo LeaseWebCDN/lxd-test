@@ -31,7 +31,7 @@
       preseed
       
   - name: Configure LXD
-    command: lxd init --preseed /tmp/preseed.yml
+    command: lxd init --preseed < /tmp/preseed.yml
     args:
       creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
     tags:
