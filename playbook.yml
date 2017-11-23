@@ -13,7 +13,7 @@
       src: templates/etc/hosts
       dest: /etc/hosts
 
-  - name: Install lxd packages
+  - name: Install LXD
     apt:
       name: "{{ lxd_packages }}"
       state: latest
@@ -27,5 +27,12 @@
       owner: root
       group: root
       mode: 0644
+    tags:
+      preseed
+      
+  - name: Configure LXD
+    command: lxd init --preseed /tmp/preseed.yml
+    args:
+      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
     tags:
       preseed
