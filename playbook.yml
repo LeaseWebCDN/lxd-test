@@ -25,3 +25,13 @@
       creates: /var/snap/lxd
     tags:
     - lxd
+
+  - name: Place preseed file
+    template:
+      src: templates/tmp/preseed.yml
+      dest: /tmp/preseed.yml
+      owner: root
+      group: root
+      mode: 0644
+    tags:
+      preseed
