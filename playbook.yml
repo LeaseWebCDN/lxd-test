@@ -13,18 +13,12 @@
       src: templates/etc/hosts
       dest: /etc/hosts
 
-  - name: Install snapd packages
+  - name: Install lxd packages
     apt:
       name: "{{ lxd_packages }}"
       state: latest
+      default_release: xenial-backports
       update_cache: yes
-
-  - name: Install LXD
-    command: snap install lxd
-    args:
-      creates: /var/snap/lxd
-    tags:
-    - lxd
 
   - name: Place preseed file
     template:
