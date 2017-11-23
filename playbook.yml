@@ -13,3 +13,7 @@
       src: templates/etc/hosts
       dest: /etc/hosts
 
+  - name: Install snapd packages
+    package:
+      name: "{{ lxd_packages }}"
+      state: present
