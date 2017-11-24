@@ -1,0 +1,5 @@
+encrypted_variables.yml
+.vagrant
+_draft
+*.retry
+*.log

@@ -1,0 +1,5 @@
+test_domain: 'test.local'
+
+lxd_packages:
+  - lxd
+  - criu

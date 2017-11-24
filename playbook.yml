@@ -1,0 +1,49 @@
+---
+
+# Any hosts
+
+- hosts:
+    - any
+  become: true
+  vars_files:
+    - variables.yml
+  tasks:
+  - name: Place hosts files for internal domain resolving
+    template:
+      src: templates/etc/hosts
+      dest: /etc/hosts
+
+  - name: Install LXD
+    apt:
+      name: "{{ lxd_packages }}"
+      state: latest
+      default_release: xenial-backports
+      update_cache: yes
+    tags:
+    - packages
+
+  - name: Place preseed file
+    template:
+      src: templates/tmp/preseed.yml
+      dest: /tmp/preseed.yml
+      owner: root
+      group: root
+      mode: 0644
+    tags:
+      preseed
+      
+  - name: Configure LXD
+    command: "bash -c 'cat /tmp/preseed.yml | lxd init --preseed'"
+#    args:
+#      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
+    tags:
+      preseed
+
+  - name: Configure LXD
+    command: "bash -c 'cat /tmp/preseed.yml | lxd init --preseed'"
+#    args:
+#      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
+    tags:
+      preseed
+
+# lxc remote add lxd2 lxd2.test.local:9999 --password sekret --accept-certificate yes
