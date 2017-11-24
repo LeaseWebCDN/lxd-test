@@ -19,6 +19,8 @@
       state: latest
       default_release: xenial-backports
       update_cache: yes
+    tags:
+    - packages
 
   - name: Place preseed file
     template:
@@ -36,3 +38,12 @@
 #      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
     tags:
       preseed
+
+  - name: Configure LXD
+    command: "bash -c 'cat /tmp/preseed.yml | lxd init --preseed'"
+#    args:
+#      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
+    tags:
+      preseed
+
+# lxc remote add lxd2 lxd2.test.local:9999 --password sekret --accept-certificate yes
