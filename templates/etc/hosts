@@ -8,5 +8,5 @@ ff02::2       ip6-allrouters
 ff02::3       ip6-allhosts
 127.0.1.1     ubuntu-xenial ubuntu-xenial
 
-192.168.22.155  lxd1.{{ test_domain }}
-192.168.22.156  lxd2.{{ test_domain }}
+192.168.22.155  lxd1.{{ test_domain }} lxd1
+192.168.22.156  lxd2.{{ test_domain }} lxd2

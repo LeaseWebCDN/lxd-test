@@ -30,20 +30,26 @@
       group: root
       mode: 0644
     tags:
-      preseed
-      
-  - name: Configure LXD
-    command: "bash -c 'cat /tmp/preseed.yml | lxd init --preseed'"
-#    args:
-#      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
-    tags:
-      preseed
+    - preseed
 
   - name: Configure LXD
     command: "bash -c 'cat /tmp/preseed.yml | lxd init --preseed'"
 #    args:
 #      creates: /var/lib/lxcfs/cgroup/blkio/system.slice/lxd.service
     tags:
-      preseed
+    - preseed
 
-# lxc remote add lxd2 lxd2.test.local:9999 --password sekret --accept-certificate yes
+  - name: Configure the remotes
+    script: scripts/{{ ansible_hostname }}-remote-config.sh
+    tags:
+    - remoteconfig
+
+  - name: copy lxd-forward script
+    copy:
+      src: scripts/lxd-forward.sh
+      dest: /usr/local/sbin/lxd-forward
+      owner: root
+      group: root
+      mode: 0700
+    tags:
+    - forwardscript

@@ -8,8 +8,8 @@ config:
 storage_pools:
 - name: default
   driver: dir
-  config:
-    source: /var/lib/lxd/storage-pools/default
+#  config:
+#    source: /var/lib/lxd/storage-pools/default
 
 # Network devices
 networks:
