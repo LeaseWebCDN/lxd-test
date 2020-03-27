@@ -1,6 +1,10 @@
 test_domain: 'test.local'
 
-lxd_packages:
-  - lxd
+lxd_dependencies:
   - criu
   - iptables-persistent
+  - snapd
+  - python-apt
+
+lxd_snap_packages:
+  - lxd

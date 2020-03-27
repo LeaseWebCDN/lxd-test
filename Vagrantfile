@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
   # config.vm.network "private_network", ip: "192.168.33.10"
   #config.vm.network "private_network", type: "dhcp"
   #config.vm.network "private_network", type: "dhcp", ip: "192.168.22.1"
-  
+
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
@@ -74,15 +74,15 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt update
-    apt install -y python
+    UCF_FORCE_CONFOLD=1 DEBIAN_FRONTEND=noninteractive apt install -y python
   SHELL
   config.vm.define "lxd1" do |lxd1|
-    lxd1.vm.box = "ubuntu/xenial64"
+    lxd1.vm.box = "ubuntu/bionic64"
     lxd1.vm.hostname = "lxd1.test.local"
     lxd1.vm.network "private_network", ip: "192.168.22.155"
   end
   config.vm.define "lxd2" do |lxd2|
-    lxd2.vm.box = "ubuntu/xenial64"
+    lxd2.vm.box = "ubuntu/bionic64"
     lxd2.vm.hostname = "lxd2.test.local"
     lxd2.vm.network "private_network", ip: "192.168.22.156"
   end
