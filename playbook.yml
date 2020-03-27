@@ -13,12 +13,17 @@
       src: templates/etc/hosts
       dest: /etc/hosts
 
-  - name: Install LXD
+  - name: Install LXD dependencies
     apt:
-      name: "{{ lxd_packages }}"
+      name: "{{ lxd_dependencies }}"
       state: latest
-      default_release: xenial-backports
       update_cache: yes
+    tags:
+    - packages
+
+  - name: Install LXD snap packages
+    snap:
+      name: "{{ lxd_snap_packages }}"
     tags:
     - packages
 
